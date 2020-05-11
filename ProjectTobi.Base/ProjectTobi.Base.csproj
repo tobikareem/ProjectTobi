@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="MiddleWare\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectTobi.Entity\ProjectTobi.Entity.csproj" />
+    <ProjectReference Include="..\ProjectTobi.Interface\ProjectTobi.Interface.csproj" />
+    <ProjectReference Include="..\ProjectTobi.Model\ProjectTobi.Model.csproj" />
+    <ProjectReference Include="..\ProjectTobi.Repository\ProjectTobi.Repository.csproj" />
+    <ProjectReference Include="..\ProjectTobi.Service\ProjectTobi.Service.csproj" />
+  </ItemGroup>
+
+</Project>

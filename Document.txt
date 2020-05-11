@@ -1,0 +1,5 @@
+# This is the Entity Framework project for ORM
+
+Installed Packaged - Microsoft.EntityFrameworkCore
+
+

@@ -1,0 +1,9 @@
+﻿
+This base class library project is intended to 
+ - register all dependencies
+ - create middleware
+
+
+
+ Packages used so far
+ - Microsoft.Extensions.DependencyInjection
