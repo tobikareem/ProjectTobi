@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D8203A20-0
 		Document.txt = Document.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTobi.Entity", "ProjectTobi.Entity\ProjectTobi.Entity.csproj", "{C4CB2E58-374F-4840-B310-B3A35C653658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTobi.Entity", "ProjectTobi.Entity\ProjectTobi.Entity.csproj", "{C4CB2E58-374F-4840-B310-B3A35C653658}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,6 +4,7 @@ using ProjectTobi.Model;
 using ProjectTobi.Entity.DbContext;
 using ProjectTobi.Interface.Repository;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace ProjectTobi.Repository
 {
@@ -23,17 +24,30 @@ namespace ProjectTobi.Repository
 
         public void Update(int id, Image obj)
         {
-            throw new System.NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            var image = GetById(id);
+            image = obj;
+            context.SaveChanges();
         }
 
         public Image GetById(int id)
         {
-            throw new System.NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            return context.Images.FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Image> GetAll()
         {
-            throw new System.NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            return context.Images.ToList();
+        }
+
+        public void Delete(int id)
+        {
+            using var context = services.GetService<ProjectContext>();
+            var image = GetById(id);
+            context.Images.Remove(image);
+            context.SaveChanges();
         }
     }
 }

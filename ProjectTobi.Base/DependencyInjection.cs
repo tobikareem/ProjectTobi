@@ -6,6 +6,8 @@ using ProjectTobi.Model;
 using ProjectTobi.Entity.DbContext;
 using ProjectTobi.Interface.Repository;
 using ProjectTobi.Repository;
+using ProjectTobi.Interface.Service;
+using ProjectTobi.Service;
 
 namespace ProjectTobi.Base
 {
@@ -13,6 +15,15 @@ namespace ProjectTobi.Base
     {
         public static IServiceCollection AddMyDependencies(this IServiceCollection services, IConfiguration configuration)
         {
+            //Add Services
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IBlogService, BlogService>();
+
+
             // Add Repositories
             services.AddSingleton<ICrudRepository<User>, UserRepository>();
             services.AddSingleton<ICrudRepository<Blog>, BlogRepository>();

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProjectTobi.Model;
 using ProjectTobi.Entity.DbContext;
 using ProjectTobi.Interface.Repository;
+using System.Linq;
 
 namespace ProjectTobi.Repository
 {
@@ -26,17 +27,30 @@ namespace ProjectTobi.Repository
 
         public void Update(int id, Blog obj)
         {
-            throw new System.NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            var blog = GetById(id);
+            blog = obj;
+            context.SaveChanges();
         }
 
         public Blog GetById(int id)
         {
-            throw new System.NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            return context.Blogs.FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Blog> GetAll()
         {
-            throw new System.NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            return context.Blogs.ToList();
+        }
+
+        public void Delete(int id)
+        {
+            using var context = services.GetService<ProjectContext>();
+            var blog = GetById(id);
+            context.Blogs.Remove(blog);
+            context.SaveChanges();
         }
     }
 }
