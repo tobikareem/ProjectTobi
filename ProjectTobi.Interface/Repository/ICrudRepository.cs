@@ -9,5 +9,6 @@ namespace ProjectTobi.Interface.Repository
         void Update(int id, T obj);
         T GetById(int id);
         IEnumerable<T> GetAll();
+        void Delete(int id);
     }
 }

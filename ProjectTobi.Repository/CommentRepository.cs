@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectTobi.Model;
 using ProjectTobi.Entity.DbContext;
+using System.Linq;
 
 namespace ProjectTobi.Repository
 {
@@ -24,17 +25,30 @@ namespace ProjectTobi.Repository
 
         public void Update(int id, Comment obj)
         {
-            throw new NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            var comment = GetById(id);
+            comment = obj;
+            context.SaveChanges();
         }
 
         public Comment GetById(int id)
         {
-            throw new NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            return context.Comments.FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Comment> GetAll()
         {
-            throw new NotImplementedException();
+            using var context = services.GetService<ProjectContext>();
+            return context.Comments.ToList();
+        }
+
+        public void Delete(int id)
+        {
+            using var context = services.GetService<ProjectContext>();
+            var comment = GetById(id);
+            context.Comments.Remove(comment);
+            context.SaveChanges();
         }
     }
 }

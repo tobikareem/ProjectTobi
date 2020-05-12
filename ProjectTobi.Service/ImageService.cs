@@ -1,20 +1,21 @@
 ﻿using ProjectTobi.Interface.Repository;
 using ProjectTobi.Interface.Service;
 using ProjectTobi.Model;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace ProjectTobi.Service
 {
-    public class UserService : IUserService
+    public class ImageService : IImageService
     {
-        private readonly ICrudRepository<User> crudRepository;
-        public UserService(ICrudRepository<User> crudRepository)
+        private readonly ICrudRepository<Image> crudRepository;
+
+        public ImageService(ICrudRepository<Image> crudRepository)
         {
             this.crudRepository = crudRepository;
         }
 
-        public void Add(User obj)
+        public void Add(Image obj)
         {
             try
             {
@@ -38,7 +39,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<Image> GetAll()
         {
             try
             {
@@ -50,7 +51,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public User GetById(int id)
+        public Image GetById(int id)
         {
             try
             {
@@ -63,7 +64,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public void Update(int id, User obj)
+        public void Update(int id, Image obj)
         {
             try
             {

@@ -4,7 +4,7 @@ using ProjectTobi.Model;
 
 namespace ProjectTobi.Interface.Service
 {
-    public interface IUserService : ICrudRepository<User>
+    public interface IPermissionService: ICrudRepository<Permission>
     {
     }
 }

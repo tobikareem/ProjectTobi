@@ -1,4 +1,5 @@
-﻿using ProjectTobi.Interface.Repository;
+﻿
+using ProjectTobi.Interface.Repository;
 using ProjectTobi.Interface.Service;
 using ProjectTobi.Model;
 using System.Collections.Generic;
@@ -6,15 +7,15 @@ using System;
 
 namespace ProjectTobi.Service
 {
-    public class UserService : IUserService
+    public class PermissionService : IPermissionService
     {
-        private readonly ICrudRepository<User> crudRepository;
-        public UserService(ICrudRepository<User> crudRepository)
+        private readonly ICrudRepository<Permission> crudRepository;
+        public PermissionService(ICrudRepository<Permission> crudRepository)
         {
             this.crudRepository = crudRepository;
         }
 
-        public void Add(User obj)
+        public void Add(Permission obj)
         {
             try
             {
@@ -38,7 +39,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<Permission> GetAll()
         {
             try
             {
@@ -50,7 +51,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public User GetById(int id)
+        public Permission GetById(int id)
         {
             try
             {
@@ -63,7 +64,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public void Update(int id, User obj)
+        public void Update(int id, Permission obj)
         {
             try
             {

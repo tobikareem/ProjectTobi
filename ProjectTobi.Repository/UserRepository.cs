@@ -1,40 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectTobi.Model;
 using ProjectTobi.Entity.DbContext;
 using ProjectTobi.Interface.Repository;
+using ProjectTobi.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace ProjectTobi.Repository
 {
-    public class UserRepository: ICrudRepository<User>
+    public class UserRepository : ICrudRepository<User>
     {
-        private readonly IServiceProvider services;
+        private readonly ProjectContext context;
 
-        public UserRepository(IServiceProvider services)
+        public UserRepository(ProjectContext context)
         {
-            this.services = services;
+            this.context = context;
         }
         public void Add(User obj)
         {
-            using var context = services.GetService<ProjectContext>();
             context.Users.Add(obj);
             context.SaveChanges();
         }
 
         public void Update(int id, User obj)
         {
-            throw new System.NotImplementedException();
+            var user = GetById(id);
+            user.FirstName = obj.FirstName;
+            user.LastName = obj.LastName;
+            user.Email = obj.Email;
+            user.PhoneNumber = obj.PhoneNumber;
+            user.ModifiedBy = obj.FirstName;
+
+            context.SaveChanges();
         }
 
         public User GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return context.Users.FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<User> GetAll()
         {
-            throw new System.NotImplementedException();
+            return context.Users.ToList();
+        }
+
+        public void Delete(int id)
+        {
+            var user = GetById(id);
+            context.Users.Remove(user);
+            context.SaveChanges();
         }
     }
 }

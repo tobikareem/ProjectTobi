@@ -1,20 +1,20 @@
 ﻿using ProjectTobi.Interface.Repository;
 using ProjectTobi.Interface.Service;
 using ProjectTobi.Model;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace ProjectTobi.Service
 {
-    public class UserService : IUserService
+    public class CategoryService: ICategoryService
     {
-        private readonly ICrudRepository<User> crudRepository;
-        public UserService(ICrudRepository<User> crudRepository)
+        private readonly ICrudRepository<Category> crudRepository;
+        public CategoryService(ICrudRepository<Category> crudRepository)
         {
             this.crudRepository = crudRepository;
         }
 
-        public void Add(User obj)
+        public void Add(Category obj)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<Category> GetAll()
         {
             try
             {
@@ -50,7 +50,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public User GetById(int id)
+        public Category GetById(int id)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public void Update(int id, User obj)
+        public void Update(int id, Category obj)
         {
             try
             {

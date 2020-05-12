@@ -8,8 +8,8 @@ namespace ProjectTobi.Entity.DbContext
     {
         public ProjectContext(DbContextOptions<ProjectContext> options): base(options)
         {
-            
         }
+
 
         public DbSet<User> Users { get; set; }
         public DbSet<Permission> Permissions { get; set; }
