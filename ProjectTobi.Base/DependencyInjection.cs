@@ -25,7 +25,7 @@ namespace ProjectTobi.Base
 
 
             // Add Repositories
-            services.AddSingleton<ICrudRepository<User>, UserRepository>();
+            services.AddScoped<ICrudRepository<User>, UserRepository>();
             services.AddSingleton<ICrudRepository<Blog>, BlogRepository>();
             services.AddSingleton<ICrudRepository<Permission>, PermissionRepository>();
             services.AddSingleton<ICrudRepository<Image>, ImageRepository>();
