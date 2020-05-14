@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ProjectTobi.Entity.DbContext;
 using ProjectTobi.Interface.Repository;
 using ProjectTobi.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace ProjectTobi.Repository
 {
@@ -25,20 +22,21 @@ namespace ProjectTobi.Repository
         }
 
         public void Update(int id, User obj)
-        {
-            var user = GetById(id);
-            user.FirstName = obj.FirstName;
-            user.LastName = obj.LastName;
-            user.Email = obj.Email;
-            user.PhoneNumber = obj.PhoneNumber;
-            user.ModifiedBy = obj.FirstName;
+        {          
+                context.Entry(obj).State = EntityState.Modified;
+                var user = GetById(id);
+                user.FirstName = obj.FirstName;
+                user.LastName = obj.LastName;
+                user.Email = obj.Email;
+                user.PhoneNumber = obj.PhoneNumber;
+                user.ModifiedBy = obj.FirstName;
 
-            context.SaveChanges();
+                context.SaveChanges();
         }
 
         public User GetById(int id)
         {
-            return context.Users.FirstOrDefault(x => x.Id == id);
+            return context.Users.Find(id);
         }
 
         public IEnumerable<User> GetAll()

@@ -9,7 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectTobi.Base;
+using Microsoft.AspNetCore.Mvc;
 
+[assembly: ApiController]
 namespace ProjectTobi
 {
     public class Startup
