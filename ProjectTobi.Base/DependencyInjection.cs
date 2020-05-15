@@ -26,11 +26,11 @@ namespace ProjectTobi.Base
 
             // Add Repositories
             services.AddScoped<ICrudRepository<User>, UserRepository>();
-            services.AddSingleton<ICrudRepository<Blog>, BlogRepository>();
-            services.AddSingleton<ICrudRepository<Permission>, PermissionRepository>();
-            services.AddSingleton<ICrudRepository<Image>, ImageRepository>();
-            services.AddSingleton<ICrudRepository<Category>, CategoryRepository>();
-            services.AddSingleton<ICrudRepository<Comment>, CommentRepository>();
+            services.AddScoped<ICrudRepository<Blog>, BlogRepository>();
+            services.AddScoped<ICrudRepository<Permission>, PermissionRepository>();
+            services.AddScoped<ICrudRepository<Image>, ImageRepository>();
+            services.AddScoped<ICrudRepository<Category>, CategoryRepository>();
+            services.AddScoped<ICrudRepository<Comment>, CommentRepository>();
 
             //DB Context
             services.AddDbContext<ProjectContext>(options =>

@@ -58,7 +58,6 @@ namespace ProjectTobi.Service
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -71,7 +70,6 @@ namespace ProjectTobi.Service
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
