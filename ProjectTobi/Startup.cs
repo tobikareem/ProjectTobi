@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectTobi.Base;
+using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 [assembly: ApiController]
@@ -46,6 +47,16 @@ namespace ProjectTobi
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddSwaggerGen((s) =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "ProjectTobi API",
+                    Version = "v1.0",
+                    Description = " An Api Project to launch my personal website",
+                    Contact = new OpenApiContact { Email = "oluwatobikareem@gmail.com", Name = "Tobi Kareem", Url = new System.Uri("https://www.tobikareem.com")}
+                });
+            });
+
             // My custom dependencies
             services.AddMyDependencies(Configuration);
         }
@@ -79,6 +90,14 @@ namespace ProjectTobi
                 c.AllowAnyHeader()
                  .AllowAnyOrigin()
                  .WithOrigins("https://localhost", "https://localhost:5001", "https://localhost:44370/");
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI((s) =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectTobi API v1.0");
+                s.RoutePrefix = string.Empty;
             });
 
             app.UseAuthentication();
