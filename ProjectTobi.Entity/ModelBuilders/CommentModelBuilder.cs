@@ -35,8 +35,8 @@ namespace ProjectTobi.Entity.ModelBuilders
 
            builder.Entity<Comment>().HasKey(keyExpression: c => c.Id);
 
-           builder.Entity<Comment>().HasOne(typeof(User), "User").WithMany("Comments");
-           builder.Entity<Comment>().HasOne(typeof(Blog), "Blog").WithMany("Comments");
+          // builder.Entity<Comment>().HasOne(typeof(User), "User").WithMany("Comments");
+          // builder.Entity<Comment>().HasOne(typeof(Blog), "Blog").WithMany("Comments");
         }
     }
 }

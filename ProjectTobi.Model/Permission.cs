@@ -6,6 +6,6 @@ namespace ProjectTobi.Model
     {
         public string PermissionName { get; set; }
 
-        public virtual ICollection<UserPermission> UserPermissions { get; set; }
+        // public virtual ICollection<UserPermission> UserPermissions { get; set; }
     }
 }
