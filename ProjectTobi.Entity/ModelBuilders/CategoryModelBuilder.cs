@@ -38,7 +38,7 @@ namespace ProjectTobi.Entity.ModelBuilders
 
             builder.Entity<Category>().HasKey("Id");
 
-            builder.Entity<Category>().HasMany(typeof(Blog), "Blogs").WithOne("Category");
+            builder.Entity<Category>().HasMany(typeof(Blog), "Blogs").WithOne("Category").HasForeignKey("CategoryId").IsRequired();
         }
     }
 }

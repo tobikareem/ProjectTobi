@@ -35,7 +35,7 @@ namespace ProjectTobi.Entity.ModelBuilders
 
             builder.Entity<Image>().HasKey(c => c.Id);
 
-            builder.Entity<Image>().HasOne(typeof(User), "User").WithMany("Images").HasForeignKey("UserId");
+           // builder.Entity<Image>().HasOne(typeof(User), "User").WithMany("Images").HasForeignKey("UserId");
 
         }
     }

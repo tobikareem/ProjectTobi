@@ -48,9 +48,9 @@ namespace ProjectTobi.Entity.ModelBuilders
                    .HasIndex("Title")
                     .HasName("IX_tobs_Blog_Title");
 
-            builder.Entity<Blog>().HasOne(typeof(Category), "Category").WithMany("Blogs").HasForeignKey("CategoryId");
-            builder.Entity<Blog>().HasOne(typeof(User), "User").WithMany("Blogs").HasForeignKey("UserId");
-            builder.Entity<Blog>().HasMany(typeof(Comment), "Comments").WithOne("Blog");
+           // builder.Entity<Blog>().HasOne(typeof(Category), "Category").WithMany("Blogs").HasForeignKey("CategoryId");
+           // builder.Entity<Blog>().HasOne(typeof(User), "User").WithMany("Blogs").HasForeignKey("UserId");
+            builder.Entity<Blog>().HasMany(typeof(Comment), "Comments").WithOne("Blog").HasForeignKey("BlogId").IsRequired();
         
         }
     }

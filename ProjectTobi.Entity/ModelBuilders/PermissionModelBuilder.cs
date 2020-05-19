@@ -36,7 +36,8 @@ namespace ProjectTobi.Entity.ModelBuilders
              .HasName("IX_tobs_Permission_PermissionName")
              .IsUnique();
 
-            builder.Entity<Permission>().HasMany(typeof(UserPermission), "UserPermissions").WithOne("Permission");
+            builder.Entity<Permission>().HasMany(typeof(UserPermission), "UserPermissions")
+                .WithOne("Permission").HasForeignKey("PermissionId").IsRequired();
 
         }
     }
