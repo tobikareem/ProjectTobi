@@ -18,7 +18,11 @@ namespace ProjectTobi.Entity.ModelBuilders
 
            builder.Entity<Comment>().Property(c => c.Content);
 
-           builder.Entity<Comment>().Property(c => c.CreatedBy)
+            //Shadow Properties for foreign keys
+            builder.Entity<Comment>().Property<int>("UserId");
+            builder.Entity<Comment>().Property<int>("BlogId");
+
+            builder.Entity<Comment>().Property(c => c.CreatedBy)
              .HasColumnType("varchar(200)")
              .HasMaxLength(200);
 
@@ -35,8 +39,8 @@ namespace ProjectTobi.Entity.ModelBuilders
 
            builder.Entity<Comment>().HasKey(keyExpression: c => c.Id);
 
-          // builder.Entity<Comment>().HasOne(typeof(User), "User").WithMany("Comments");
-          // builder.Entity<Comment>().HasOne(typeof(Blog), "Blog").WithMany("Comments");
+           builder.Entity<Comment>().HasOne<User>().WithMany().HasForeignKey("UserId").OnDelete(DeleteBehavior.Cascade);
+           builder.Entity<Comment>().HasOne<Blog>().WithMany().HasForeignKey("BlogId").OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

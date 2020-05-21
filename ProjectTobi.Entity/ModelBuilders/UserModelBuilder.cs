@@ -52,11 +52,11 @@ namespace ProjectTobi.Entity.ModelBuilders
             builder.Entity<User>().HasIndex("FirstName")
              .HasName("IX_tobs_User_FirstName")
              .IsUnique();
-            builder.Entity<User>().HasMany(typeof(Image),"Images").WithOne("User").HasForeignKey("UserId").IsRequired();
-            builder.Entity<User>().HasMany(typeof(UserPermission), "UserPermissions").WithOne("User").HasForeignKey("UserId").IsRequired();
-            builder.Entity<User>().HasMany(typeof(Blog), "Blogs").WithOne("User").HasForeignKey("UserId").IsRequired();
-            builder.Entity<User>().HasMany(typeof(Comment), "Comments").WithOne("User").HasForeignKey("UserId").IsRequired();
-          
+
+            builder.Entity<User>().HasMany<Image>().WithOne().IsRequired();
+            builder.Entity<User>().HasMany<UserPermission>().WithOne().IsRequired();
+            builder.Entity<User>().HasMany<Blog>().WithOne().IsRequired();
+            builder.Entity<User>().HasMany<Comment>().WithOne().IsRequired();
         }
     }
 }

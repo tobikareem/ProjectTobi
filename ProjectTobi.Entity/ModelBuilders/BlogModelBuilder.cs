@@ -22,6 +22,10 @@ namespace ProjectTobi.Entity.ModelBuilders
                    .Property(c => c.Content)
                    .IsRequired();
 
+            // Shadow Properties for foreign keys
+            builder.Entity<Blog>().Property<int>("UserId");
+            builder.Entity<Blog>().Property<int>("CategoryId");
+
             builder.Entity<Blog>()
                    .Property(c => c.CreatedBy)
                    .HasColumnType("varchar(200)")
@@ -48,9 +52,9 @@ namespace ProjectTobi.Entity.ModelBuilders
                    .HasIndex("Title")
                     .HasName("IX_tobs_Blog_Title");
 
-           // builder.Entity<Blog>().HasOne(typeof(Category), "Category").WithMany("Blogs").HasForeignKey("CategoryId");
-           // builder.Entity<Blog>().HasOne(typeof(User), "User").WithMany("Blogs").HasForeignKey("UserId");
-            builder.Entity<Blog>().HasMany(typeof(Comment), "Comments").WithOne("Blog").HasForeignKey("BlogId").IsRequired();
+            builder.Entity<Blog>().HasOne<User>().WithMany().HasForeignKey("UserId").IsRequired();
+            builder.Entity<Blog>().HasOne<Category>().WithMany().HasForeignKey("CategoryId").IsRequired();
+            builder.Entity<Blog>().HasMany<Comment>().WithOne().IsRequired();
         
         }
     }

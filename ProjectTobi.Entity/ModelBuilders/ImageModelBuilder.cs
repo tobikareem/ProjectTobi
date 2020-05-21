@@ -18,6 +18,9 @@ namespace ProjectTobi.Entity.ModelBuilders
 
             builder.Entity<Image>().Property(c => c.Name);
 
+            // Shadow property UserId for Foreignkey
+            builder.Entity<Image>().Property<int>("UserId");
+
             builder.Entity<Image>().Property(c => c.CreatedBy)
              .HasColumnType("varchar(200)")
              .HasMaxLength(200);
@@ -35,7 +38,7 @@ namespace ProjectTobi.Entity.ModelBuilders
 
             builder.Entity<Image>().HasKey(c => c.Id);
 
-           // builder.Entity<Image>().HasOne(typeof(User), "User").WithMany("Images").HasForeignKey("UserId");
+           builder.Entity<Image>().HasOne<User>().WithMany().HasForeignKey("UserId");
 
         }
     }

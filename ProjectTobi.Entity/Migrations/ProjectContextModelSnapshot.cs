@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectTobi.Entity.DbContext;
 
 namespace ProjectTobi.Entity.Migrations
@@ -271,10 +272,10 @@ namespace ProjectTobi.Entity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DisplayName")
+                    b.HasIndex("FirstName")
                         .IsUnique()
-                        .HasName("IX_tobs_User_DisplayName")
-                        .HasFilter("[DisplayName] IS NOT NULL");
+                        .HasName("IX_tobs_User_FirstName")
+                        .HasFilter("[FirstName] IS NOT NULL");
 
                     b.ToTable("Users");
                 });
@@ -288,16 +289,20 @@ namespace ProjectTobi.Entity.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetimeoffset")
+                        .HasDefaultValueSql("getutcdate()");
 
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<DateTimeOffset?>("ModifiedDate")
                         .HasColumnType("datetimeoffset");
@@ -311,14 +316,14 @@ namespace ProjectTobi.Entity.Migrations
 
             modelBuilder.Entity("ProjectTobi.Model.Blog", b =>
                 {
-                    b.HasOne("ProjectTobi.Model.Category", "Category")
-                        .WithMany("Blogs")
+                    b.HasOne("ProjectTobi.Model.Category", null)
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectTobi.Model.User", "User")
-                        .WithMany("Blogs")
+                    b.HasOne("ProjectTobi.Model.User", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -326,14 +331,14 @@ namespace ProjectTobi.Entity.Migrations
 
             modelBuilder.Entity("ProjectTobi.Model.Comment", b =>
                 {
-                    b.HasOne("ProjectTobi.Model.Blog", "Blog")
-                        .WithMany("Comments")
+                    b.HasOne("ProjectTobi.Model.Blog", null)
+                        .WithMany()
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectTobi.Model.User", "User")
-                        .WithMany("Comments")
+                    b.HasOne("ProjectTobi.Model.User", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -341,8 +346,8 @@ namespace ProjectTobi.Entity.Migrations
 
             modelBuilder.Entity("ProjectTobi.Model.Image", b =>
                 {
-                    b.HasOne("ProjectTobi.Model.User", "User")
-                        .WithMany("Images")
+                    b.HasOne("ProjectTobi.Model.User", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -350,14 +355,14 @@ namespace ProjectTobi.Entity.Migrations
 
             modelBuilder.Entity("ProjectTobi.Model.UserPermission", b =>
                 {
-                    b.HasOne("ProjectTobi.Model.Permission", "Permission")
-                        .WithMany("UserPermissions")
+                    b.HasOne("ProjectTobi.Model.Permission", null)
+                        .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectTobi.Model.User", "User")
-                        .WithMany("UserPermissions")
+                    b.HasOne("ProjectTobi.Model.User", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
