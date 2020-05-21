@@ -81,8 +81,8 @@ namespace ProjectTobi.Entity.Migrations
                     ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Title = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
                     Content = table.Column<string>(nullable: false),
-                    UserId = table.Column<int>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,10 +139,10 @@ namespace ProjectTobi.Entity.Migrations
                     UserId = table.Column<int>(nullable: false),
                     PermissionId = table.Column<int>(nullable: false),
                     Id = table.Column<int>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTimeOffset>(nullable: false),
-                    ModifiedBy = table.Column<string>(nullable: true),
-                    ModifiedDate = table.Column<DateTimeOffset>(nullable: true)
+                    CreatedBy = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false, defaultValueSql: "getutcdate()"),
+                    ModifiedBy = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -176,8 +176,8 @@ namespace ProjectTobi.Entity.Migrations
                     ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     UserName = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: false),
-                    BlogId = table.Column<int>(nullable: false)
+                    BlogId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -188,14 +188,14 @@ namespace ProjectTobi.Entity.Migrations
                         principalSchema: "tobs",
                         principalTable: "Blogs",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Comments_Users_UserId",
                         column: x => x.UserId,
                         principalSchema: "tobs",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction, onUpdate:ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
