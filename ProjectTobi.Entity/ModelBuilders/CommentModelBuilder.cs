@@ -8,6 +8,8 @@ namespace ProjectTobi.Entity.ModelBuilders
     {
         internal static void Build(ModelBuilder builder)
         {
+            builder.Entity<Comment>().ToTable("Comments");
+
            builder.Entity<Comment>()
                   .Property(c => c.Id)
              .HasColumnType("int");
@@ -39,7 +41,7 @@ namespace ProjectTobi.Entity.ModelBuilders
 
            builder.Entity<Comment>().HasKey(keyExpression: c => c.Id);
 
-           builder.Entity<Comment>().HasOne<User>().WithMany().HasForeignKey("UserId").OnDelete(DeleteBehavior.Cascade);
+           builder.Entity<Comment>().HasOne<ApplicationUser>().WithMany().HasForeignKey("UserId").OnDelete(DeleteBehavior.Cascade);
            builder.Entity<Comment>().HasOne<Blog>().WithMany().HasForeignKey("BlogId").OnDelete(DeleteBehavior.Cascade);
         }
     }

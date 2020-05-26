@@ -5,12 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MiddleWare\" />
+    <Compile Remove="MiddleWare\**" />
+    <EmbeddedResource Remove="MiddleWare\**" />
+    <None Remove="MiddleWare\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
   </ItemGroup>
 

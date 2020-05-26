@@ -20,14 +20,14 @@ namespace ProjectTobi.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetUsers()
+        public ActionResult<IEnumerable<ApplicationUser>> GetUsers()
         {
             return Ok(userService.GetAll());
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public  ActionResult<User> GetUser(int id)
+        public  ActionResult<ApplicationUser> GetUser(int id)
         {
             // var user = await _context.Users.FindAsync(id);
             var user = userService.GetById(id);
@@ -45,12 +45,12 @@ namespace ProjectTobi.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         [ProducesResponseType(404)]
-        public IActionResult PutUser(int id, User user)
+        public IActionResult PutUser(int id, ApplicationUser user)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != user.Id)
+            //{
+            //    return BadRequest();
+            //}
 
             try
             {
@@ -76,7 +76,7 @@ namespace ProjectTobi.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public ActionResult<User> PostUser(User user)
+        public ActionResult<ApplicationUser> PostUser(ApplicationUser user)
         {
             userService.Add(user);
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
@@ -84,7 +84,7 @@ namespace ProjectTobi.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public ActionResult<User> DeleteUser(int id)
+        public ActionResult<ApplicationUser> DeleteUser(int id)
         {
             var user = userService.GetById(id);
             if (user is null)

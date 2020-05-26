@@ -8,6 +8,8 @@ namespace ProjectTobi.Entity.ModelBuilders
     {
         internal static void Build(ModelBuilder builder)
         {
+            builder.Entity<Category>().ToTable("Categories");
+
             builder.Entity<Category>()
                    .Property(c => c.Id)
                    .HasColumnType("int");

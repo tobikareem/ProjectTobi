@@ -9,13 +9,13 @@ namespace ProjectTobi.Service
 {
     public class PermissionService : IPermissionService
     {
-        private readonly ICrudRepository<Permission> crudRepository;
-        public PermissionService(ICrudRepository<Permission> crudRepository)
+        private readonly ICrudRepository<ApplicationRole> crudRepository;
+        public PermissionService(ICrudRepository<ApplicationRole> crudRepository)
         {
             this.crudRepository = crudRepository;
         }
 
-        public void Add(Permission obj)
+        public void Add(ApplicationRole obj)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public IEnumerable<Permission> GetAll()
+        public IEnumerable<ApplicationRole> GetAll()
         {
             try
             {
@@ -51,7 +51,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public Permission GetById(int id)
+        public ApplicationRole GetById(int id)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public void Update(int id, Permission obj)
+        public void Update(int id, ApplicationRole obj)
         {
             try
             {

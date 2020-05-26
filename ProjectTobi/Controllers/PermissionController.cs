@@ -18,14 +18,14 @@ namespace ProjectTobi.Controllers
 
         // GET: api/Permission
         [HttpGet]
-        public ActionResult<IEnumerable<Permission>> GetPermissions()
+        public ActionResult<IEnumerable<ApplicationRole>> GetPermissions()
         {
             return Ok(permissionService.GetAll());
         }
 
         // GET: api/Permission/5
         [HttpGet("{id}")]
-        public ActionResult<Permission> GetPermission(int id)
+        public ActionResult<ApplicationRole> GetPermission(int id)
         {
             var permission = permissionService.GetById(id);
 
@@ -41,12 +41,12 @@ namespace ProjectTobi.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public IActionResult PutPermission(int id, Permission permission)
+        public IActionResult PutPermission(int id, ApplicationRole permission)
         {
-            if (id != permission.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != permission.Id)
+            //{
+            //    return BadRequest();
+            //}
             try
             {
                 permissionService.Update(id, permission);
@@ -71,7 +71,7 @@ namespace ProjectTobi.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public ActionResult<Permission> PostPermission(Permission permission)
+        public ActionResult<ApplicationRole> PostPermission(ApplicationRole permission)
         {
             permissionService.Add(permission);
             return CreatedAtAction("GetPermission", new { id = permission.Id }, permission);
@@ -79,7 +79,7 @@ namespace ProjectTobi.Controllers
 
         // DELETE: api/Permission/5
         [HttpDelete("{id}")]
-        public ActionResult<Permission> DeletePermission(int id)
+        public ActionResult<ApplicationRole> DeletePermission(int id)
         {
             var permission = permissionService.GetById(id);
             if (permission is null)

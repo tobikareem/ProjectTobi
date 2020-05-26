@@ -8,6 +8,8 @@ namespace ProjectTobi.Entity.ModelBuilders
     {
         internal static void Build(ModelBuilder builder)
         {
+            builder.Entity<Blog>().ToTable("Blogs");
+
             builder.Entity<Blog>()
                    .Property(c => c.Id)
                    .HasColumnType("int");
@@ -52,7 +54,7 @@ namespace ProjectTobi.Entity.ModelBuilders
                    .HasIndex("Title")
                     .HasName("IX_tobs_Blog_Title");
 
-            builder.Entity<Blog>().HasOne<User>().WithMany().HasForeignKey("UserId").IsRequired();
+            builder.Entity<Blog>().HasOne<ApplicationUser>().WithMany().HasForeignKey("UserId").IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Blog>().HasOne<Category>().WithMany().HasForeignKey("CategoryId").IsRequired();
             builder.Entity<Blog>().HasMany<Comment>().WithOne().IsRequired();
         
