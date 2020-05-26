@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace ProjectTobi.Model
 {
     public class Blog : GeneralEntity

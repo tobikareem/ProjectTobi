@@ -7,37 +7,37 @@ using System.Linq;
 
 namespace ProjectTobi.Repository
 {
-    public class UserRepository : ICrudRepository<User>
+    public class ApplicationUserRepository : ICrudRepository<ApplicationUser>
     {
         private readonly ProjectContext context;
 
-        public UserRepository(ProjectContext context)
+        public ApplicationUserRepository(ProjectContext context)
         {
             this.context = context;
         }
-        public void Add(User obj)
+        public void Add(ApplicationUser obj)
         {
-            context.Users.Add(obj);
+            context.ApplicationUsers.Add(obj);
             context.SaveChanges();
         }
 
-        public void Update(int id, User obj)
+        public void Update(int id, ApplicationUser obj)
         {          
                 context.Entry(obj).State = EntityState.Modified;
                 GetById(id).ModifiedDate = System.DateTime.UtcNow;
                 context.SaveChanges();
         }
 
-        public User GetById(int id)
-            => context.Users.Find(id);
+        public ApplicationUser GetById(int id)
+            => context.ApplicationUsers.Find(id);
 
-        public IEnumerable<User> GetAll()
-            => context.Users.ToList();
+        public IEnumerable<ApplicationUser> GetAll()
+            => context.ApplicationUsers.ToList();
 
         public void Delete(int id)
         {
             var user = GetById(id);
-            context.Users.Remove(user);
+            context.ApplicationUsers.Remove(user);
             context.SaveChanges();
         }
     }

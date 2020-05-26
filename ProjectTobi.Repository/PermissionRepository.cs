@@ -7,38 +7,38 @@ using System.Linq;
 
 namespace ProjectTobi.Repository
 {
-    public class PermissionRepository : ICrudRepository<Permission>
+    public class PermissionRepository : ICrudRepository<ApplicationRole>
     {
         private readonly ProjectContext context;
         public PermissionRepository(ProjectContext context)
         {
             this.context = context;
         }
-        public void Add(Permission obj)
+        public void Add(ApplicationRole obj)
         {
-            context.Permissions.Add(obj);
+            context.ApplicationRoles.Add(obj);
             context.SaveChanges();
         }
 
-        public void Update(int id, Permission obj)
+        public void Update(int id, ApplicationRole obj)
         {
             context.Entry(obj).State = EntityState.Modified;
             GetById(id).ModifiedDate = System.DateTime.UtcNow;
             context.SaveChanges();
         }
 
-        public Permission GetById(int id)
-            => context.Permissions.Find(id);
+        public ApplicationRole GetById(int id)
+            => context.ApplicationRoles.Find(id);
         
 
-        public IEnumerable<Permission> GetAll()
-            => context.Permissions.ToList();
+        public IEnumerable<ApplicationRole> GetAll()
+            => context.ApplicationRoles.ToList();
         
 
         public void Delete(int id)
         {
             var permission = GetById(id);
-            context.Permissions.Remove(permission);
+            context.ApplicationRoles.Remove(permission);
             context.SaveChanges();
         }
     }

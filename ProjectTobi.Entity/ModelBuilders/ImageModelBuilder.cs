@@ -7,7 +7,7 @@ namespace ProjectTobi.Entity.ModelBuilders
     {
         internal static void Build(ModelBuilder builder)
         {
-
+            builder.Entity<Image>().ToTable("Images");
             builder.Entity<Image>().Property(c => c.Id)
              .HasColumnType("int");
 
@@ -38,7 +38,7 @@ namespace ProjectTobi.Entity.ModelBuilders
 
             builder.Entity<Image>().HasKey(c => c.Id);
 
-           builder.Entity<Image>().HasOne<User>().WithMany().HasForeignKey("UserId");
+           builder.Entity<Image>().HasOne<ApplicationUser>().WithMany().HasForeignKey("UserId").OnDelete(DeleteBehavior.Cascade);
 
         }
     }

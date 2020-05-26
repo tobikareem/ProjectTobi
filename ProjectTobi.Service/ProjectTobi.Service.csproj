@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ProjectTobi.Interface\ProjectTobi.Interface.csproj" />
     <ProjectReference Include="..\ProjectTobi.Model\ProjectTobi.Model.csproj" />
   </ItemGroup>

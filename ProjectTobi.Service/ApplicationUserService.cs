@@ -6,15 +6,15 @@ using System;
 
 namespace ProjectTobi.Service
 {
-    public class UserService : IUserService
+    public class ApplicationUserService : IUserService
     {
-        private readonly ICrudRepository<User> crudRepository;
-        public UserService(ICrudRepository<User> crudRepository)
+        private readonly ICrudRepository<ApplicationUser> crudRepository;
+        public ApplicationUserService(ICrudRepository<ApplicationUser> crudRepository)
         {
             this.crudRepository = crudRepository;
         }
 
-        public void Add(User obj)
+        public void Add(ApplicationUser obj)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<ApplicationUser> GetAll()
         {
             try
             {
@@ -50,7 +50,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public User GetById(int id)
+        public ApplicationUser GetById(int id)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace ProjectTobi.Service
             }
         }
 
-        public void Update(int id, User obj)
+        public void Update(int id, ApplicationUser obj)
         {
             try
             {
